@@ -1,0 +1,24 @@
+{
+  "name": "pptb-skills",
+  "owner": {
+    "name": "AIDevMe",
+    "url": "https://aidevme.com"
+  },
+  "interface": {
+    "displayName": "PPTB Skills"
+  },
+  "plugins": [
+    {
+      "name": "pptb",
+      "source": {
+        "source": "local",
+        "path": "./.github/plugins/pptb"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

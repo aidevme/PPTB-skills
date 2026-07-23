@@ -1,0 +1,53 @@
+# CODEOWNERS — Auto-assign reviewers for PRs
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+#
+# Each line is a file pattern followed by one or more GitHub usernames.
+# The LAST matching pattern takes precedence.
+# Order: broad rules first, then specific overrides.
+
+# ============================================================================
+# Default owner — everything not matched below
+# ============================================================================
+*                                                               @aidevme
+
+# ============================================================================
+# Documentation
+# ============================================================================
+# Entries below are auto-generated from docs/ by scripts/sync-code-owners.ps1.
+# Do not edit the lines between the markers by hand — run the script instead.
+# BEGIN AUTO-GENERATED: docs
+docs/.vitepress/**                                              @aidevme
+docs/github/**                                                  @aidevme
+docs/index.md                                                   @aidevme
+docs/overview.md                                                @aidevme
+docs/references/**                                              @aidevme
+docs/references/mcps/**                                         @aidevme
+docs/references/mcps/github-mcps/**                             @aidevme
+docs/references/mcps/microsoft-mcps/**                          @aidevme
+docs/references/mcps/other-mcps/**                              @aidevme
+docs/references/skills/**                                       @aidevme
+docs/references/skills/microsoft-skills/**                      @aidevme
+docs/references/vscode-extensions/**                            @aidevme
+docs/template/**                                                @aidevme
+# END AUTO-GENERATED: docs
+
+# ============================================================================
+# Repository governance
+# ============================================================================
+README.md                                                       @aidevme
+WRITING_STYLE.md                                                @aidevme
+CHANGE_LOGS.md                                                  @aidevme
+LICENSE                                                         @aidevme
+
+# ============================================================================
+# CI/CD and repo tooling
+# ============================================================================
+.github/**                                                     @aidevme
+.devcontainer/**                                                @aidevme
+package.json                                                    @aidevme
+package-lock.json                                               @aidevme
+cspell.json                                                     @aidevme
+.markdownlint.jsonc                                             @aidevme
+markdownlintignore                                              @aidevme
+scripts/**                                                      @aidevme
+templates/**                                                    @aidevme

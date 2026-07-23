@@ -1,0 +1,142 @@
+{
+  "skill_name": "create-pptb-tool",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I want to build a new Power Platform ToolBox tool that lets me bulk-update Dataverse records from a CSV file.",
+      "expected_output": "Should first check whether the current directory already looks like a PPTB tool project (package.json with displayName/main/icon, @pptb/types in devDependencies) and, since it doesn't, proceed with scaffolding. Should ask the developer which framework to build with via AskUserQuestion, presenting the four sample-tools options (HTML/vanilla TS, React, Vue, Svelte) with their stack and best-for guidance. Should not proceed to run the generator until a framework is chosen.",
+      "assertions": [
+        "Checks for an existing PPTB tool project before scaffolding (Step 0)",
+        "Asks which framework to use via AskUserQuestion rather than assuming one",
+        "Presents all four sample-tools options (HTML, React, Vue, Svelte) with stack and best-for guidance",
+        "Does not run the Yeoman generator before a framework is chosen"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Create a new PPTB tool using React called bulk-updater.",
+      "expected_output": "Should recognize that the framework (React) is already stated and skip the AskUserQuestion framework prompt. Should proceed directly to running the Yeoman generator (`npx --package yo --package generator-pptb -- yo pptb bulk-updater`, or the globally-installed equivalent), selecting React when the generator itself prompts for a framework.",
+      "assertions": [
+        "Skips the framework question since React was already stated",
+        "Runs or describes running the yo pptb generator with the given tool name",
+        "Carries the React choice into the generator's own framework prompt",
+        "Does not ask a redundant framework question"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Set up a new tool for the toolbox.",
+      "files": [
+        {
+          "path": "package.json",
+          "content": "{\n  \"name\": \"@myorg/existing-tool\",\n  \"version\": \"1.0.0\",\n  \"displayName\": \"Existing Tool\",\n  \"main\": \"index.html\",\n  \"icon\": \"icons/test.svg\",\n  \"devDependencies\": {\n    \"@pptb/types\": \"^1.2.0\"\n  }\n}\n"
+        }
+      ],
+      "expected_output": "Should detect in Step 0 that `package.json` already has `displayName`, `main`, and `icon`, and that `@pptb/types` is already a devDependency. Should NOT re-scaffold or overwrite the existing project. Should tell the user this looks like an existing PPTB tool and point them at the sibling skills (add-toolbox-api, add-dataverse-api, add-powerplatform-api, configure-csp, validate-pptb-tool, publish-pptb-tool) instead.",
+      "assertions": [
+        "Detects the existing manifest fields and @pptb/types dependency",
+        "Does not re-run the generator or overwrite existing files",
+        "Tells the user this looks like an already-scaffolded PPTB tool",
+        "Points to at least one relevant sibling skill instead of re-scaffolding"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Scaffold a new PPTB tool called icon-picker and show me the package.json you'd generate.",
+      "expected_output": "Should produce a package.json containing the required fields: name (scoped), version, displayName, description, main (index.html), icon (an SVG path relative to dist, not iconURL), license, contributors, and configurations.repository. Should explicitly avoid emitting the deprecated `iconURL` field under `configurations`. Should mention making the SVG theme-aware with fill=\"currentColor\" or stroke=\"currentColor\". Should only include features.minAPI if a specific API version dependency is identified, not by default.",
+      "assertions": [
+        "Includes all required manifest fields (name, version, displayName, description, main, icon, license, contributors, configurations.repository)",
+        "Does not emit the deprecated iconURL field under configurations",
+        "Mentions fill=\"currentColor\" or stroke=\"currentColor\" for theme-aware icons",
+        "Does not add features.minAPI without a stated reason tied to a specific API version"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "I'm porting my XrmToolBox tool 'Bulk Data Updater' to Power Platform ToolBox. I'm not the original author. What should I do?",
+      "expected_output": "Should surface the community etiquette note: since the developer isn't the original author, they should reach out to the original XrmToolBox author first as a courtesy before publishing a port. Should mention this is expected community practice, not a legal requirement. Should still proceed with the normal scaffolding steps (framework choice, generator, manifest, type definitions, starter) alongside the etiquette guidance, and may mention the PPTB Discord as a place to discuss the port.",
+      "assertions": [
+        "Surfaces the etiquette note about contacting the original XrmToolBox author",
+        "Frames it as community courtesy, not a legal requirement",
+        "Still proceeds with the normal scaffold workflow (framework choice, generator, manifest, etc.)",
+        "May mention the PPTB Discord community as a discussion resource"
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "I don't have Node/npx available on this machine. Can you set up the files manually for a Vue-based tool called quick-notes?",
+      "expected_output": "Should recognize that the generator can't be run and fall back to a manual scaffold, creating the same file layout by hand (package.json, index.html, styles.css, app.ts/app.vue, README.md as applicable to Vue). Should point the developer at the vue-sample/ folder in the sample tools repository (https://github.com/PowerPlatformToolBox/sample-tools) as a working reference to copy patterns from. Should still complete the manifest and type-definition steps despite the generator being unavailable.",
+      "assertions": [
+        "Recognizes the generator is unavailable and switches to a manual scaffold",
+        "Creates the same file layout by hand rather than blocking on the missing generator",
+        "References the vue-sample/ folder in the sample tools repository as a reference implementation",
+        "Still completes the package.json manifest and @pptb/types installation steps"
+      ],
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "Build me a PPTB tool that also needs to read Dataverse account records and show them in a grid.",
+      "expected_output": "Should scaffold the tool (framework choice, generator, manifest, type definitions, starter) but should NOT attempt to implement the Dataverse grid/query logic itself. Should defer the actual Dataverse API wiring to the add-dataverse-api sibling skill, mentioning it explicitly in the hand-off, rather than writing dataverseAPI calls inline as part of this skill.",
+      "assertions": [
+        "Completes the scaffold (framework, manifest, type defs, starter) as its own scope",
+        "Does not implement Dataverse query/grid logic itself",
+        "Explicitly defers Dataverse API wiring to the add-dataverse-api skill",
+        "Keeps the starter code limited to the generic connection-check/notification pattern, not business logic"
+      ],
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "I'll go with the HTML Sample option — I just want plain TypeScript, no framework overhead. Call the tool 'env-badge'.",
+      "expected_output": "Should recognize the HTML Sample (vanilla TypeScript) option was selected and carry it into the generator prompt in Step 2, selecting the no-framework/vanilla TS option when the generator asks. Should not substitute a different framework. If a manual scaffold is needed instead of the generator, should reference the html-sample/ folder in the sample tools repository, not react-sample/, vue-sample/, or svelte-sample/.",
+      "assertions": [
+        "Identifies the HTML Sample (vanilla TypeScript, no framework) option as selected",
+        "Carries the vanilla TS choice into the generator's own framework prompt",
+        "Does not substitute React, Vue, or Svelte for the stated choice",
+        "References html-sample/ specifically if a manual-scaffold reference is needed"
+      ],
+      "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "Let's use the React Sample for this one. Tool name: dashboard-widget.",
+      "expected_output": "Should recognize the React Sample option was selected and carry it into the generator prompt in Step 2, selecting React 18 when the generator asks. Should not substitute a different framework. If a manual scaffold is needed instead of the generator, should reference the react-sample/ folder in the sample tools repository, not html-sample/, vue-sample/, or svelte-sample/.",
+      "assertions": [
+        "Identifies the React Sample (React 18) option as selected",
+        "Carries the React choice into the generator's own framework prompt",
+        "Does not substitute HTML, Vue, or Svelte for the stated choice",
+        "References react-sample/ specifically if a manual-scaffold reference is needed"
+      ],
+      "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "Vue Sample, please — I want the Composition API with script setup. Name it 'form-wizard'.",
+      "expected_output": "Should recognize the Vue Sample option was selected and carry it into the generator prompt in Step 2, selecting Vue 3 with the Composition API when the generator asks. Should not substitute a different framework. If a manual scaffold is needed instead of the generator, should reference the vue-sample/ folder in the sample tools repository, not html-sample/, react-sample/, or svelte-sample/.",
+      "assertions": [
+        "Identifies the Vue Sample (Vue 3 Composition API) option as selected",
+        "Carries the Vue choice into the generator's own framework prompt",
+        "Does not substitute HTML, React, or Svelte for the stated choice",
+        "References vue-sample/ specifically if a manual-scaffold reference is needed"
+      ],
+      "files": []
+    },
+    {
+      "id": 11,
+      "prompt": "Go with Svelte — this tool needs to be as small and fast as possible since it'll be embedded in a limited screen space. Call it 'perf-monitor'.",
+      "expected_output": "Should recognize the Svelte Sample option was selected and carry it into the generator prompt in Step 2, selecting Svelte 5 when the generator asks. Should not substitute a different framework. If a manual scaffold is needed instead of the generator, should reference the svelte-sample/ folder in the sample tools repository, not html-sample/, react-sample/, or vue-sample/.",
+      "assertions": [
+        "Identifies the Svelte Sample (Svelte 5) option as selected",
+        "Carries the Svelte choice into the generator's own framework prompt",
+        "Does not substitute HTML, React, or Vue for the stated choice",
+        "References svelte-sample/ specifically if a manual-scaffold reference is needed"
+      ],
+      "files": []
+    }
+  ]
+}
