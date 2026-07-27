@@ -265,10 +265,6 @@ export default defineConfig({
         ],
       },
       {
-        text: "References",
-        link: "/references/",
-      },
-      {
         text: "Miscellaneous",
         link: "/miscellaneous/",
         collapsed: true,
@@ -327,6 +323,10 @@ export default defineConfig({
             ],
           },
         ],
+      },
+      {
+        text: "References",
+        link: "/references/",
       },
     ],
   },
