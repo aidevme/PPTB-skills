@@ -202,6 +202,10 @@ export default defineConfig({
             collapsed: true,
             items: [
               {
+                text: "tool-development",
+                link: "/pptb-skills/tool-skills/tool-development/",
+              },
+              {
                 text: "create-pptb-tool",
                 link: "/pptb-skills/tool-skills/create-pptb-tool/",
               },
@@ -248,6 +252,10 @@ export default defineConfig({
             link: "/pptb-skills/toolbox-skills/",
             collapsed: true,
             items: [
+              {
+                text: "toolbox-development",
+                link: "/pptb-skills/toolbox-skills/toolbox-development/",
+              },
               {
                 text: "setup-toolbox-dev-env",
                 link: "/pptb-skills/toolbox-skills/setup-toolbox-dev-env/",
