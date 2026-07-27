@@ -264,6 +264,10 @@ export default defineConfig({
           },
         ],
       },
+      {
+        text: "References",
+        link: "/references/",
+      },
     ],
   },
 });
