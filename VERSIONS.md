@@ -3,7 +3,7 @@
 Current versions of all skills in the Power Platform Toolbox (PPTB) plugin (`.github/plugins/pptb/skills`). Agents can compare against local versions to check for updates.
 
 | Skill | Version | Last Updated | Status |
-|-------|---------|---------------|--------|
+| ------- | --------- | --------------- | -------- |
 | add-agent-integration | 0.1.0 | 2026-07-23 | Stub (empty SKILL.md) |
 | add-dataverse-api | 0.1.0 | 2026-07-23 | Stub (empty SKILL.md) |
 | add-error-handling | 0.1.0 | 2026-07-23 | Stub (empty SKILL.md) |
