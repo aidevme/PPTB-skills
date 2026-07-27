@@ -4,25 +4,34 @@ Current versions of all skills in the Power Platform Toolbox (PPTB) plugin (`.gi
 
 | Skill | Version | Last Updated | Status |
 | ------- | --------- | --------------- | -------- |
-| add-agent-integration | 0.1.0 | 2026-07-23 | Stub (empty SKILL.md) |
-| add-dataverse-api | 0.1.0 | 2026-07-23 | Stub (empty SKILL.md) |
-| add-error-handling | 0.1.0 | 2026-07-23 | Stub (empty SKILL.md) |
+| add-agent-integration | 0.2.0 | 2026-07-27 | Drafted |
+| add-dataverse-api | 0.2.0 | 2026-07-27 | Drafted |
+| add-error-handling | 0.2.0 | 2026-07-27 | Drafted |
+| add-events-api | 0.1.0 | 2026-07-27 | Drafted |
+| add-file-system-api | 0.1.0 | 2026-07-27 | Drafted |
 | add-host-manager | 0.1.0 | 2026-07-23 | Stub (empty SKILL.md) |
-| add-inter-tool-invocation | 0.1.0 | 2026-07-23 | Stub (empty SKILL.md) |
-| add-powerplatform-api | 0.1.0 | 2026-07-23 | Stub (empty SKILL.md) |
-| add-toolbox-api | 0.1.0 | 2026-07-23 | Stub (empty SKILL.md) |
-| configure-csp | 0.1.0 | 2026-07-23 | Stub (empty SKILL.md) |
+| add-inter-tool-invocation | 0.2.0 | 2026-07-27 | Drafted |
+| add-powerplatform-api | 0.2.0 | 2026-07-27 | Drafted |
+| add-settings-api | 0.1.0 | 2026-07-27 | Drafted |
+| add-toolbox-api | 0.2.0 | 2026-07-27 | Drafted |
+| configure-csp | 0.2.0 | 2026-07-27 | Drafted |
 | create-pptb-tool | 0.1.0 | 2026-07-23 | Drafted |
 | package-toolbox | 0.1.0 | 2026-07-23 | Stub (empty SKILL.md) |
-| publish-pptb-tool | 0.1.0 | 2026-07-23 | Stub (empty SKILL.md) |
+| publish-pptb-tool | 0.2.0 | 2026-07-27 | Drafted |
 | setup-toolbox-dev-env | 0.1.0 | 2026-07-23 | Stub (empty SKILL.md) |
-| validate-pptb-tool | 0.1.0 | 2026-07-23 | Stub (empty SKILL.md) |
+| validate-pptb-tool | 0.2.0 | 2026-07-27 | Drafted |
 
-Note: all skills are seeded at 0.1.0 as a starting baseline since none carry prior version history. Only `create-pptb-tool` currently has drafted content; the rest are directory scaffolds (`SKILL.md` + `references/`) with no content yet. Bump each skill's version and Last Updated date here whenever its `SKILL.md` or `references/` content changes.
+Note: all skills were seeded at 0.1.0 as a starting baseline; skills drafted after that baseline bump to 0.2.0 on their first real content. `add-events-api`, `add-file-system-api`, and `add-settings-api` are new additions (not in the original 13) covering docs pages under `docs/pptb-tools/tool-development/` (`events-api`, `file-system-api`, `settings-api`) that previously had no corresponding skill. Only `add-host-manager`, `package-toolbox`, and `setup-toolbox-dev-env` — the three ToolBox-development skills — remain empty scaffolds. Bump each skill's version and Last Updated date here whenever its `SKILL.md` or `references/` content changes.
 
-Total skills: 13
+Total skills: 16
 
 ## Recent Changes
+
+### 0.2.0 (2026-07-27)
+
+- Drafted content for `add-toolbox-api`, `add-dataverse-api`, `add-error-handling`, `add-powerplatform-api`, `configure-csp`, `validate-pptb-tool`, `add-inter-tool-invocation`, `add-agent-integration`, and `publish-pptb-tool` — all 9 were previously empty stubs, now full specs grounded in their `docs/pptb-tools/tool-development/` reference pages.
+- Added three new skills not in the original 13-skill catalog, closing a gap where `docs/pptb-tools/tool-development/{events-api,file-system-api,settings-api}` had no corresponding skill at all: `add-events-api`, `add-file-system-api`, `add-settings-api`.
+- Only `add-host-manager`, `package-toolbox`, and `setup-toolbox-dev-env` (the ToolBox-development group) remain empty scaffolds.
 
 ### 0.1.0 (2026-07-23)
 
