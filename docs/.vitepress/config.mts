@@ -2,10 +2,9 @@ import { defineConfig } from "vitepress";
 
 export default defineConfig({
   title: "PPTB Skills",
-  base: "/PPTB-skills/",
   description:
     "A curated library of reusable development skills, patterns, and best practices for building plugins and tools within the Power Platform Toolbox (PPTB) ecosystem.",
-  head: [["link", { rel: "icon", href: "/PPTB-skills/favicon.ico" }]],
+  head: [["link", { rel: "icon", href: "/favicon.ico" }]],
   themeConfig: {
     logo: "/app-icon.svg",
     sidebar: [
