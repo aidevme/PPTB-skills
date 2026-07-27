@@ -72,7 +72,7 @@ foreach ($file in $skillFiles) {
 
     $checked++
 
-    if ($lineCount -gt $MaxLines) {
+    if ($lineCount -ge $MaxLines) {
         Write-Host "  FAIL  $skillName ($lineCount lines, limit $MaxLines)" -ForegroundColor Red
         $failures.Add("$skillName is $lineCount lines (limit $MaxLines) - move detail to references/")
     } else {
