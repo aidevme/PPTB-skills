@@ -39,7 +39,7 @@ Optional frontmatter fields: `license` (default: MIT), `metadata` (author, versi
 
 ### 4. Structure your skill
 
-```
+```text
 skills/your-skill-name/
 ├── SKILL.md           # Required - main instructions
 ├── references/        # Optional - additional documentation
