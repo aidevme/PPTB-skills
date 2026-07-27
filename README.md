@@ -59,6 +59,7 @@ Skills cross-reference each other within a group — `add-toolbox-api` ↔ `add-
 <!-- SKILLS:START -->
 | Skill | Description |
 | ----- | ----------- |
+| [tool-development](.github/plugins/pptb/skills/tool-development/) | Entry point for building a PPTB tool — a web app that runs inside the Power Platform ToolBox host and talks to Dataverse/Power Platform through injected APIs. Routes to the specific skill a request needs. |
 | [create-pptb-tool](.github/plugins/pptb/skills/create-pptb-tool/) | Scaffolds a new Power Platform ToolBox (PPTB) tool — runs the `yo pptb` generator (or a manual fallback), writes a compliant `package.json` manifest, installs `@pptb/types`, and wires a minimal... |
 | [add-toolbox-api](.github/plugins/pptb/skills/add-toolbox-api/) | Wires up `window.toolboxAPI` calls — connections, utils (notifications, clipboard, theme, parallel execution, browser open), terminal sessions, inter-tool invocation, and tool context. |
 | [add-dataverse-api](.github/plugins/pptb/skills/add-dataverse-api/) | Wires up `window.dataverseAPI` calls — CRUD, relationship associations, FetchXML/OData queries, entity/attribute/relationship/option-set metadata and schema writes, actions, and solution deployment. |
@@ -72,6 +73,10 @@ Skills cross-reference each other within a group — `add-toolbox-api` ↔ `add-
 | [add-agent-integration](.github/plugins/pptb/skills/add-agent-integration/) | Exposes a tool to AI assistants through the ToolBox's built-in MCP server — the `agents` object in `pptb.config.json`, execution modes, and a headless entry point. |
 | [validate-pptb-tool](.github/plugins/pptb/skills/validate-pptb-tool/) | Runs and interprets `pptb-validate` against a tool's `package.json` manifest before publishing. |
 | [publish-pptb-tool](.github/plugins/pptb/skills/publish-pptb-tool/) | Finalizes, builds, and publishes a tool to npm, then submits it to the ToolBox registry. |
+| [toolbox-development](.github/plugins/pptb/skills/toolbox-development/) | Entry point for contributing to the Power Platform ToolBox host application itself — the Electron shell that loads and runs tools. Routes to the specific skill a request needs. |
+| [setup-toolbox-dev-env](.github/plugins/pptb/skills/setup-toolbox-dev-env/) | Forks, clones, and bootstraps a local development environment for the Power Platform ToolBox host application. |
+| [add-host-manager](.github/plugins/pptb/skills/add-host-manager/) | Scaffolds a new main-process manager for the ToolBox host, following the existing settings/connections/tool-lifecycle/auth pattern and wired through `toolboxAPI`/`toolboxAPIBridge.js`. |
+| [package-toolbox](.github/plugins/pptb/skills/package-toolbox/) | Runs lint, type-check, and build steps for the ToolBox host, then produces a platform-specific packaged build from its three Vite bundles. |
 <!-- SKILLS:END -->
 
-> 3 additional skills (`add-host-manager`, `package-toolbox`, `setup-toolbox-dev-env`) — the ToolBox-development group — are specified but not yet implemented. See [VERSIONS.md](VERSIONS.md) for status and [docs/pptb-skills](docs/pptb-skills/) for their design specs.
+All 18 skills in the catalog have drafted content — see [VERSIONS.md](VERSIONS.md) for per-skill version history and [docs/pptb-skills](docs/pptb-skills/) for the original design specs.

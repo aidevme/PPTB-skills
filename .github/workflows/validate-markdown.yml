@@ -36,15 +36,34 @@ jobs:
     steps:
     - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
 
-    # Checks the status of hyperlinks in .md files in verbose mode
+    - name: Setup Node.js
+      uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+      with:
+        node-version: '24'
+
+    - name: Install markdown-link-check
+      run: npm install -g markdown-link-check
+
+    # Checks the status of hyperlinks in .md files in verbose mode. Runs the
+    # markdown-link-check CLI directly instead of through
+    # tcort/github-action-markdown-link-check, which builds a Docker image on
+    # every run and is prone to Docker Hub pull timeouts on GitHub-hosted
+    # runners.
     - name: Check links
-      uses: tcort/github-action-markdown-link-check@e7c7a18363c842693fadde5d41a3bd3573a7a225 # v1
       continue-on-error: true
       id: link-check
-      with:
-        use-quiet-mode: 'yes'          # Only show broken links
-        use-verbose-mode: 'yes'
-        check-modified-files-only: 'no' # Check all files
+      run: |
+        set +e
+        status=0
+        while IFS= read -r -d '' file; do
+          echo "Checking $file"
+          markdown-link-check --quiet --verbose "$file"
+          code=$?
+          if [ "$code" -ne 0 ]; then
+            status=$code
+          fi
+        done < <(find . -name '*.md' -not -path './node_modules/*' -not -path './.git/*' -print0)
+        exit $status
     - name: Report link check results
       if: steps.link-check.outcome == 'failure'
       run: |

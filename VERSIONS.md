@@ -9,23 +9,33 @@ Current versions of all skills in the Power Platform Toolbox (PPTB) plugin (`.gi
 | add-error-handling | 0.2.0 | 2026-07-27 | Drafted |
 | add-events-api | 0.1.0 | 2026-07-27 | Drafted |
 | add-file-system-api | 0.1.0 | 2026-07-27 | Drafted |
-| add-host-manager | 0.1.0 | 2026-07-23 | Stub (empty SKILL.md) |
+| add-host-manager | 0.2.0 | 2026-07-27 | Drafted |
 | add-inter-tool-invocation | 0.2.0 | 2026-07-27 | Drafted |
 | add-powerplatform-api | 0.2.0 | 2026-07-27 | Drafted |
 | add-settings-api | 0.1.0 | 2026-07-27 | Drafted |
 | add-toolbox-api | 0.2.0 | 2026-07-27 | Drafted |
 | configure-csp | 0.2.0 | 2026-07-27 | Drafted |
 | create-pptb-tool | 0.1.0 | 2026-07-23 | Drafted |
-| package-toolbox | 0.1.0 | 2026-07-23 | Stub (empty SKILL.md) |
+| package-toolbox | 0.2.0 | 2026-07-27 | Drafted |
 | publish-pptb-tool | 0.2.0 | 2026-07-27 | Drafted |
-| setup-toolbox-dev-env | 0.1.0 | 2026-07-23 | Stub (empty SKILL.md) |
+| setup-toolbox-dev-env | 0.2.0 | 2026-07-27 | Drafted |
+| tool-development | 0.1.0 | 2026-07-27 | Drafted |
+| toolbox-development | 0.1.0 | 2026-07-27 | Drafted |
 | validate-pptb-tool | 0.2.0 | 2026-07-27 | Drafted |
 
-Note: all skills were seeded at 0.1.0 as a starting baseline; skills drafted after that baseline bump to 0.2.0 on their first real content. `add-events-api`, `add-file-system-api`, and `add-settings-api` are new additions (not in the original 13) covering docs pages under `docs/pptb-tools/tool-development/` (`events-api`, `file-system-api`, `settings-api`) that previously had no corresponding skill. Only `add-host-manager`, `package-toolbox`, and `setup-toolbox-dev-env` — the three ToolBox-development skills — remain empty scaffolds. Bump each skill's version and Last Updated date here whenever its `SKILL.md` or `references/` content changes.
+Note: all skills were seeded at 0.1.0 as a starting baseline; skills drafted after that baseline bump to 0.2.0 on their first real content. `add-events-api`, `add-file-system-api`, and `add-settings-api` are new additions (not in the original 13) covering docs pages under `docs/pptb-tools/tool-development/` (`events-api`, `file-system-api`, `settings-api`) that previously had no corresponding skill. `tool-development` and `toolbox-development` are new router/entry-point skills — each with a `references/skills-catalog.md` — that map a generic request to the right specific skill within their audience. All 18 skills now have drafted content; none remain empty scaffolds. Bump each skill's version and Last Updated date here whenever its `SKILL.md` or `references/` content changes.
 
-Total skills: 16
+Total skills: 18
 
 ## Recent Changes
+
+### 0.2.0 (2026-07-27) — ToolBox-development group
+
+- Drafted content for `add-host-manager`, `package-toolbox`, and `setup-toolbox-dev-env` — the last 3 empty stubs — grounded in their `docs/pptb-tools/toolbox-development/` reference pages. All 18 skills in the catalog now have drafted content.
+
+### 0.1.0 (2026-07-27)
+
+- Added `tool-development` and `toolbox-development` — router/entry-point skills that map a generic "build a PPTB tool" / "contribute to the ToolBox host" request to the right specific skill, each with a `references/skills-catalog.md` giving full descriptions of every skill in its group.
 
 ### 0.2.0 (2026-07-27)
 
