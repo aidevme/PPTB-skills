@@ -1,16 +1,13 @@
-> ## Documentation Index
-> Fetch the complete documentation index at: https://agentskills.io/llms.txt
-> Use this file to discover all available pages before exploring further.
-
 # Specification
 
 > The complete format specification for Agent Skills.
+> Source: <https://agentskills.io/specification>
 
 ## Directory structure
 
 A skill is a directory containing, at minimum, a `SKILL.md` file:
 
-```
+```text
 skill-name/
 ├── SKILL.md          # Required: metadata + instructions
 ├── scripts/          # Optional: executable code
@@ -25,176 +22,160 @@ The `SKILL.md` file must contain YAML frontmatter followed by Markdown content.
 
 ### Frontmatter
 
-| Field           | Required | Constraints                                                                                                       |
-| --------------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
-| `name`          | Yes      | Max 64 characters. Lowercase letters, numbers, and hyphens only. Must not start or end with a hyphen.             |
-| `description`   | Yes      | Max 1024 characters. Non-empty. Describes what the skill does and when to use it.                                 |
-| `license`       | No       | License name or reference to a bundled license file.                                                              |
-| `compatibility` | No       | Max 500 characters. Indicates environment requirements (intended product, system packages, network access, etc.). |
-| `metadata`      | No       | Arbitrary key-value mapping for additional metadata.                                                              |
-| `allowed-tools` | No       | Space-separated string of pre-approved tools the skill may use. (Experimental)                                    |
+| Field | Required | Constraints |
+| --- | --- | --- |
+| `name` | Yes | Max 64 characters. Lowercase letters, numbers, and hyphens only. Must not start or end with a hyphen. |
+| `description` | Yes | Max 1024 characters. Non-empty. Describes what the skill does and when to use it. |
+| `license` | No | License name or reference to a bundled license file. |
+| `compatibility` | No | Max 500 characters. Indicates environment requirements (intended product, system packages, network access, etc.). |
+| `metadata` | No | Arbitrary key-value mapping for additional metadata. |
+| `allowed-tools` | No | Space-separated string of pre-approved tools the skill may use. (Experimental) |
 
-<Card>
-  **Minimal example:**
+**Minimal example:**
 
-  ```markdown SKILL.md theme={null}
-  ---
-  name: skill-name
-  description: A description of what this skill does and when to use it.
-  ---
-  ```
+```markdown
+---
+name: skill-name
+description: A description of what this skill does and when to use it.
+---
+```
 
-  **Example with optional fields:**
+**Example with optional fields:**
 
-  ```markdown SKILL.md theme={null}
-  ---
-  name: pdf-processing
-  description: Extract PDF text, fill forms, merge files. Use when handling PDFs.
-  license: Apache-2.0
-  metadata:
-    author: example-org
-    version: "1.0"
-  ---
-  ```
-</Card>
+```markdown
+---
+name: pdf-processing
+description: Extract PDF text, fill forms, merge files. Use when handling PDFs.
+license: Apache-2.0
+metadata:
+  author: example-org
+  version: "1.0"
+---
+```
 
 #### `name` field
 
 The required `name` field:
 
-* Must be 1-64 characters
-* May only contain unicode lowercase alphanumeric characters (`a-z`, `0-9`) and hyphens (`-`)
-* Must not start or end with a hyphen (`-`)
-* Must not contain consecutive hyphens (`--`)
-* Must match the parent directory name
+- Must be 1-64 characters
+- May only contain unicode lowercase alphanumeric characters (`a-z`, `0-9`) and hyphens (`-`)
+- Must not start or end with a hyphen (`-`)
+- Must not contain consecutive hyphens (`--`)
+- Must match the parent directory name
 
-<Card>
-  **Valid examples:**
+**Valid examples:**
 
-  ```yaml theme={null}
-  name: pdf-processing
-  ```
+```yaml
+name: pdf-processing
+```
 
-  ```yaml theme={null}
-  name: data-analysis
-  ```
+```yaml
+name: data-analysis
+```
 
-  ```yaml theme={null}
-  name: code-review
-  ```
+```yaml
+name: code-review
+```
 
-  **Invalid examples:**
+**Invalid examples:**
 
-  ```yaml theme={null}
-  name: PDF-Processing  # uppercase not allowed
-  ```
+```yaml
+name: PDF-Processing  # uppercase not allowed
+```
 
-  ```yaml theme={null}
-  name: -pdf  # cannot start with hyphen
-  ```
+```yaml
+name: -pdf  # cannot start with hyphen
+```
 
-  ```yaml theme={null}
-  name: pdf--processing  # consecutive hyphens not allowed
-  ```
-</Card>
+```yaml
+name: pdf--processing  # consecutive hyphens not allowed
+```
 
 #### `description` field
 
 The required `description` field:
 
-* Must be 1-1024 characters
-* Should describe both what the skill does and when to use it
-* Should include specific keywords that help agents identify relevant tasks
+- Must be 1-1024 characters
+- Should describe both what the skill does and when to use it
+- Should include specific keywords that help agents identify relevant tasks
 
-<Card>
-  **Good example:**
+**Good example:**
 
-  ```yaml theme={null}
-  description: Extracts text and tables from PDF files, fills PDF forms, and merges multiple PDFs. Use when working with PDF documents or when the user mentions PDFs, forms, or document extraction.
-  ```
+```yaml
+description: Extracts text and tables from PDF files, fills PDF forms, and merges multiple PDFs. Use when working with PDF documents or when the user mentions PDFs, forms, or document extraction.
+```
 
-  **Poor example:**
+**Poor example:**
 
-  ```yaml theme={null}
-  description: Helps with PDFs.
-  ```
-</Card>
+```yaml
+description: Helps with PDFs.
+```
 
 #### `license` field
 
 The optional `license` field:
 
-* Specifies the license applied to the skill
-* We recommend keeping it short (either the name of a license or the name of a bundled license file)
+- Specifies the license applied to the skill
+- We recommend keeping it short (either the name of a license or the name of a bundled license file)
 
-<Card>
-  **Example:**
+**Example:**
 
-  ```yaml theme={null}
-  license: Proprietary. LICENSE.txt has complete terms
-  ```
-</Card>
+```yaml
+license: Proprietary. LICENSE.txt has complete terms
+```
 
 #### `compatibility` field
 
 The optional `compatibility` field:
 
-* Must be 1-500 characters if provided
-* Should only be included if your skill has specific environment requirements
-* Can indicate intended product, required system packages, network access needs, etc.
+- Must be 1-500 characters if provided
+- Should only be included if your skill has specific environment requirements
+- Can indicate intended product, required system packages, network access needs, etc.
 
-<Card>
-  **Examples:**
+**Examples:**
 
-  ```yaml theme={null}
-  compatibility: Designed for Claude Code (or similar products)
-  ```
+```yaml
+compatibility: Designed for Claude Code (or similar products)
+```
 
-  ```yaml theme={null}
-  compatibility: Requires git, docker, jq, and access to the internet
-  ```
+```yaml
+compatibility: Requires git, docker, jq, and access to the internet
+```
 
-  ```yaml theme={null}
-  compatibility: Requires Python 3.14+ and uv
-  ```
-</Card>
+```yaml
+compatibility: Requires Python 3.14+ and uv
+```
 
-<Note>
-  Most skills do not need the `compatibility` field.
-</Note>
+> **Note:** Most skills do not need the `compatibility` field.
 
 #### `metadata` field
 
 The optional `metadata` field:
 
-* A map from string keys to string values
-* Clients can use this to store additional properties not defined by the Agent Skills spec
-* We recommend making your key names reasonably unique to avoid accidental conflicts
+- A map from string keys to string values
+- Clients can use this to store additional properties not defined by the Agent Skills spec
+- We recommend making your key names reasonably unique to avoid accidental conflicts
 
-<Card>
-  **Example:**
+**Example:**
 
-  ```yaml theme={null}
-  metadata:
-    author: example-org
-    version: "1.0"
-  ```
-</Card>
+```yaml
+metadata:
+  author: example-org
+  version: "1.0"
+```
 
 #### `allowed-tools` field
 
 The optional `allowed-tools` field:
 
-* A space-separated string of tools that are pre-approved to run
-* Experimental. Support for this field may vary between agent implementations
+- A space-separated string of tools that are pre-approved to run
+- Experimental. Support for this field may vary between agent implementations
 
-<Card>
-  **Example:**
+**Example:**
 
-  ```yaml theme={null}
-  allowed-tools: Bash(git:*) Bash(jq:*) Read
-  ```
-</Card>
+```yaml
+allowed-tools: Bash(git:*) Bash(jq:*) Read
+```
 
 ### Body content
 
@@ -202,9 +183,9 @@ The Markdown body after the frontmatter contains the skill instructions. There a
 
 Recommended sections:
 
-* Step-by-step instructions
-* Examples of inputs and outputs
-* Common edge cases
+- Step-by-step instructions
+- Examples of inputs and outputs
+- Common edge cases
 
 Note that the agent will load this entire file once it's decided to activate a skill. Consider splitting longer `SKILL.md` content into referenced files.
 
@@ -214,9 +195,9 @@ Note that the agent will load this entire file once it's decided to activate a s
 
 Contains executable code that agents can run. Scripts should:
 
-* Be self-contained or clearly document dependencies
-* Include helpful error messages
-* Handle edge cases gracefully
+- Be self-contained or clearly document dependencies
+- Include helpful error messages
+- Handle edge cases gracefully
 
 Supported languages depend on the agent implementation. Common options include Python, Bash, and JavaScript.
 
@@ -224,27 +205,27 @@ Supported languages depend on the agent implementation. Common options include P
 
 Contains additional documentation that agents can read when needed:
 
-* `REFERENCE.md` - Detailed technical reference
-* `FORMS.md` - Form templates or structured data formats
-* Domain-specific files (`finance.md`, `legal.md`, etc.)
+- `REFERENCE.md` — detailed technical reference
+- `FORMS.md` — form templates or structured data formats
+- Domain-specific files (`finance.md`, `legal.md`, etc.)
 
-Keep individual [reference files](#file-references) focused. Agents load these on demand, so smaller files mean less use of context.
+Keep individual reference files focused. Agents load these on demand, so smaller files mean less use of context.
 
 ### `assets/`
 
 Contains static resources:
 
-* Templates (document templates, configuration templates)
-* Images (diagrams, examples)
-* Data files (lookup tables, schemas)
+- Templates (document templates, configuration templates)
+- Images (diagrams, examples)
+- Data files (lookup tables, schemas)
 
 ## Progressive disclosure
 
 Agents load skills *progressively*, pulling in more detail only as a task calls for it. Skills should be structured to take advantage of this:
 
-1. **Metadata** (\~100 tokens): The `name` and `description` fields are loaded at startup for all skills
-2. **Instructions** (\< 5000 tokens recommended): The full `SKILL.md` body is loaded when the skill is activated
-3. **Resources** (as needed): Files (e.g. those in `scripts/`, `references/`, or `assets/`) are loaded only when required
+1. **Metadata** (~100 tokens) — the `name` and `description` fields are loaded at startup for all skills.
+2. **Instructions** (< 5000 tokens recommended) — the full `SKILL.md` body is loaded when the skill is activated.
+3. **Resources** (as needed) — files (e.g. those in `scripts/`, `references/`, or `assets/`) are loaded only when required.
 
 Keep your main `SKILL.md` under 500 lines. Move detailed reference material to separate files.
 
@@ -252,7 +233,7 @@ Keep your main `SKILL.md` under 500 lines. Move detailed reference material to s
 
 When referencing other files in your skill, use relative paths from the skill root:
 
-```markdown SKILL.md theme={null}
+```markdown
 See [the reference guide](references/REFERENCE.md) for details.
 
 Run the extraction script:
@@ -265,7 +246,7 @@ Keep file references one level deep from `SKILL.md`. Avoid deeply nested referen
 
 Use the [skills-ref](https://github.com/agentskills/agentskills/tree/main/skills-ref) reference library to validate your skills:
 
-```bash theme={null}
+```bash
 skills-ref validate ./my-skill
 ```
 
