@@ -268,6 +268,66 @@ export default defineConfig({
         text: "References",
         link: "/references/",
       },
+      {
+        text: "Miscellaneous",
+        link: "/miscellaneous/",
+        collapsed: true,
+        items: [
+          {
+            text: "Agent Skills",
+            link: "/miscellaneous/agent-skills/",
+            collapsed: true,
+            items: [
+              {
+                text: "Overview",
+                link: "/miscellaneous/agent-skills/overview/",
+              },
+              {
+                text: "Specification",
+                link: "/miscellaneous/agent-skills/specification/",
+              },
+              {
+                text: "Client Showcase",
+                link: "/miscellaneous/agent-skills/client-showcase/",
+              },
+              {
+                text: "For skill creators",
+                items: [
+                  {
+                    text: "Quickstart",
+                    link: "/miscellaneous/agent-skills/quickstart/",
+                  },
+                  {
+                    text: "Best practices",
+                    link: "/miscellaneous/agent-skills/best-practices/",
+                  },
+                  {
+                    text: "Optimizing descriptions",
+                    link: "/miscellaneous/agent-skills/optimizing-descriptions/",
+                  },
+                  {
+                    text: "Evaluating skills",
+                    link: "/miscellaneous/agent-skills/evaluating-skills/",
+                  },
+                  {
+                    text: "Using scripts",
+                    link: "/miscellaneous/agent-skills/using-scripts/",
+                  },
+                ],
+              },
+              {
+                text: "For client implementors",
+                items: [
+                  {
+                    text: "Adding skills support",
+                    link: "/miscellaneous/agent-skills/adding-skills-support/",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
     ],
   },
 });
