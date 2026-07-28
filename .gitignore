@@ -33,5 +33,8 @@ __pycache__/
 # Report output
 report/
 
+# Skill eval workspace output (transcripts, timing.json, grading.json from eval runs)
+/skills-workspace/
+
 # Claude Code local settings (personal, not shared)
 .claude/settings.local.json
