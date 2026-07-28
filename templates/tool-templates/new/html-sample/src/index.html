@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>HTML Sample Tool</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+
+    <body>
+        <div class="container">
+            <header>
+                <h1>🚀 HTML Sample Tool</h1>
+                <p class="subtitle">A complete example of building Power Platform Tool Box tools with HTML & TypeScript</p>
+            </header>
+
+            <!-- Connection Status -->
+            <section class="card">
+                <h2>🔗 Primary Connection Status</h2>
+                <div id="connection-info" class="info-box">
+                    <div class="loading">Checking connection...</div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>🔗 Secondary Connection Status</h2>
+                <div id="secondary-connection-info" class="info-box">
+                    <div class="loading">Checking connection...</div>
+                </div>
+            </section>
+
+            <!-- ToolBox API Examples -->
+            <section class="card">
+                <h2>🛠️ ToolBox API Examples</h2>
+
+                <div class="example-group">
+                    <h3>Notifications</h3>
+                    <div class="button-group">
+                        <button id="show-success-btn" class="btn btn-success">Show Success</button>
+                        <button id="show-info-btn" class="btn btn-info">Show Info</button>
+                        <button id="show-warning-btn" class="btn btn-warning">Show Warning</button>
+                        <button id="show-error-btn" class="btn btn-error">Show Error</button>
+                        <button id="show-loading-btn" class="btn btn-secondary">Show Loading</button>
+                    </div>
+                </div>
+
+                <div class="example-group">
+                    <h3>Utilities</h3>
+                    <div class="button-group">
+                        <button id="copy-clipboard-btn" class="btn">Copy to Clipboard</button>
+                        <button id="get-theme-btn" class="btn">Get Theme</button>
+                        <button id="save-file-btn" class="btn">Save File</button>
+                    </div>
+                </div>
+
+                <div class="example-group">
+                    <h3>File System API</h3>
+                    <div class="button-group">
+                        <button id="read-text-btn" class="btn">Read Text File</button>
+                        <button id="read-directory-btn" class="btn">Read Directory</button>
+                        <button id="create-directory-btn" class="btn">Create Directory</button>
+                        <button id="read-system-file-btn" class="btn btn-error">Read System File (Test)</button>
+                        <button id="read-hardcoded-file-btn" class="btn btn-error">Read File (Ignore Selection)</button>
+                        <button id="read-direct-file-btn" class="btn btn-error">Read Hardcoded Path (No Dialog)</button>
+                    </div>
+                    <div id="filesystem-output" class="output"></div>
+                </div>
+
+                <div class="example-group">
+                    <h3>Advanced Utilities</h3>
+                    <p style="margin: 4px 0 8px; font-size: 12px; opacity: 0.8">Demonstrates <code>executeParallel</code>.</p>
+                    <div class="button-group">
+                        <button id="parallel-demo-btn" class="btn btn-primary">Run Parallel Demo</button>
+                    </div>
+                    <div id="parallel-output" class="output"></div>
+                </div>
+
+                <div class="example-group">
+                    <h3>Terminal</h3>
+                    <div class="button-group">
+                        <button id="create-terminal-btn" class="btn">Create Terminal</button>
+                        <button id="execute-command-btn" class="btn" disabled>Execute Command</button>
+                        <button id="run-security-probe-btn" class="btn btn-warning" disabled>Run Security Probe</button>
+                        <button id="close-terminal-btn" class="btn" disabled>Close Terminal</button>
+                    </div>
+                    <div id="terminal-output" class="output"></div>
+                </div>
+
+                <div class="example-group">
+                    <h3>Security Test Suites</h3>
+                    <p style="margin: 4px 0 8px; font-size: 12px; opacity: 0.8">Runs non-destructive API-specific security checks with per-suite JSON reports.</p>
+                    <div class="button-group">
+                        <button id="run-terminal-suite-btn" class="btn btn-warning">Run Terminal Suite</button>
+                        <button id="run-filesystem-suite-btn" class="btn btn-warning">Run FileSystem Suite</button>
+                        <button id="run-events-suite-btn" class="btn btn-warning">Run Events Suite</button>
+                        <button id="run-settings-suite-btn" class="btn btn-warning">Run Settings Suite</button>
+                        <button id="run-dataverse-suite-btn" class="btn btn-warning">Run Dataverse Suite</button>
+                        <button id="run-security-suite-btn" class="btn btn-error">Run All Suites</button>
+                    </div>
+                    <div id="overall-suite-output" class="output"></div>
+                    <div id="terminal-suite-output" class="output"></div>
+                    <div id="filesystem-suite-output" class="output"></div>
+                    <div id="events-suite-output" class="output"></div>
+                    <div id="settings-suite-output" class="output"></div>
+                    <div id="dataverse-suite-output" class="output"></div>
+                </div>
+            </section>
+
+            <!-- Dataverse API Examples -->
+            <section class="card">
+                <h2>💾 Dataverse API Examples</h2>
+
+                <div class="example-group">
+                    <h3>Tool Settings</h3>
+                    <p style="margin: 4px 0 10px; font-size: 12px; opacity: 0.85">Persist simple configuration values per tool instance using the Tool Settings storage API.</p>
+                    <div class="input-group">
+                        <label for="settings-fetchxml">Saved FetchXML (used for Account Query demo if present):</label>
+                        <textarea
+                            id="settings-fetchxml"
+                            style="width: 100%; min-height: 110px; padding: 10px; border: 2px solid #e0e0e0; border-radius: 6px; font-family: monospace; font-size: 12px; line-height: 1.4"
+                            placeholder="Enter FetchXML here and click Save Setting"
+                        ></textarea>
+                    </div>
+                    <div class="button-group">
+                        <button id="load-setting-btn" class="btn">Load Setting</button>
+                        <button id="save-setting-btn" class="btn btn-primary">Save Setting</button>
+                    </div>
+                    <div id="settings-output" class="output"></div>
+                </div>
+
+                <div class="example-group">
+                    <h3>Query Records</h3>
+                    <div class="button-group">
+                        <button id="query-accounts-btn" class="btn btn-primary">Query Top 10 Accounts (Primary)</button>
+                        <button id="query-accounts-secondary-btn" class="btn">Query Top 10 Accounts (Secondary)</button>
+                        <button id="query-contacts-querydata-btn" class="btn">Query Top 10 Contacts (Primary)</button>
+                    </div>
+                    <div id="query-output" class="output"></div>
+                    <div id="query-output-secondary" class="output"></div>
+                </div>
+
+                <div class="example-group">
+                    <h3>CRUD Operations</h3>
+                    <div class="input-group">
+                        <label for="contact-firstname">Contact First Name:</label>
+                        <input type="text" id="contact-firstname" placeholder="Enter contact first name" value="Sample" />
+                    </div>
+                    <div class="input-group">
+                        <label for="contact-lastname">Contact Last Name:</label>
+                        <input type="text" id="contact-lastname" placeholder="Enter contact last name" value="Contact" />
+                    </div>
+                    <div class="button-group">
+                        <button id="create-contact-btn" class="btn btn-primary">Create Contact</button>
+                        <button id="update-contact-btn" class="btn" disabled>Update Contact</button>
+                        <button id="delete-contact-btn" class="btn btn-error" disabled>Delete Contact</button>
+                    </div>
+                    <div id="crud-output" class="output"></div>
+                </div>
+
+                <div class="example-group">
+                    <h3>Metadata</h3>
+                    <button id="get-metadata-btn" class="btn">Get Contact Metadata</button>
+                    <button id="get-metadata-attributes" class="btn">Get Account Attributes Metadata</button>
+                    <button id="get-metadata-allentities" class="btn">Get All Entities Metadata</button>
+                    <div id="metadata-output" class="output"></div>
+                </div>
+
+                <div class="example-group">
+                    <h3>Execute Actions</h3>
+                    <button id="whoami-btn" class="btn">Execute WhoAmI</button>
+                    <div id="execute-output" class="output"></div>
+                </div>
+            </section>
+
+            <!-- Power Platform API Examples -->
+            <section class="card">
+                <h2>⚡ Power Platform API Examples</h2>
+                <p style="margin: 4px 0 15px; font-size: 12px; opacity: 0.85">Generic HTTP methods for Power Platform Admin APIs (Power Apps, Power Automate, Environment Management, Governance).</p>
+
+                <div class="example-group">
+                    <h3>Generic Endpoint Tester</h3>
+                    <p style="margin: 4px 0 10px; font-size: 12px; opacity: 0.85">
+                        Select method + namespace from the namespace catalog and provide a relative path (for example:
+                        <code>environments?api-version=2024-10-01</code>).
+                    </p>
+                    <div class="input-group">
+                        <label for="pp-generic-method">Method:</label>
+                        <select id="pp-generic-method">
+                            <option value="Get" selected>GET</option>
+                            <option value="Post">POST</option>
+                            <option value="Put">PUT</option>
+                            <option value="Patch">PATCH</option>
+                            <option value="Delete">DELETE</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="pp-generic-namespace">Namespace:</label>
+                        <select id="pp-generic-namespace">
+                            <option value="Analytics">Analytics</option>
+                            <option value="AppManagement">AppManagement</option>
+                            <option value="Authorization">Authorization</option>
+                            <option value="Connectivity">Connectivity</option>
+                            <option value="CopilotStudio">CopilotStudio</option>
+                            <option value="Dynamics">Dynamics</option>
+                            <option value="EnvironmentManagement" selected>EnvironmentManagement</option>
+                            <option value="Governance">Governance</option>
+                            <option value="Licensing">Licensing</option>
+                            <option value="PowerApps">PowerApps</option>
+                            <option value="PowerAutomate">PowerAutomate</option>
+                            <option value="PowerPages">PowerPages</option>
+                            <option value="ResourceQuery">ResourceQuery</option>
+                            <option value="UserManagement">UserManagement</option>
+                            <option value="WorkflowAgents">WorkflowAgents</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="pp-generic-path">Relative Path:</label>
+                        <input type="text" id="pp-generic-path" value="environments?api-version=2024-10-01" placeholder="e.g., environments/{environmentId}/apps?api-version=2024-10-01" />
+                    </div>
+                    <div class="input-group">
+                        <label for="pp-generic-body">Request Body (JSON, optional for POST/PUT/PATCH/DELETE):</label>
+                        <textarea
+                            id="pp-generic-body"
+                            style="width: 100%; min-height: 110px; padding: 10px; border: 2px solid #e0e0e0; border-radius: 6px; font-family: monospace; font-size: 12px; line-height: 1.4"
+                            placeholder="{\n  \"sample\": \"value\"\n}"
+                        ></textarea>
+                    </div>
+                    <div class="button-group">
+                        <button id="pp-generic-execute-btn" class="btn btn-primary">Execute Endpoint</button>
+                    </div>
+                    <div id="pp-generic-output" class="output"></div>
+                </div>
+
+                <div class="example-group">
+                    <h3>Power Apps API</h3>
+                    <div class="input-group">
+                        <label for="ppapps-env-id">Environment ID:</label>
+                        <input type="text" id="ppapps-env-id" placeholder="Enter environment ID" />
+                    </div>
+                    <div class="button-group">
+                        <button id="list-apps-btn" class="btn">List Admin Apps</button>
+                    </div>
+                    <div id="powerapps-output" class="output"></div>
+                </div>
+
+                <div class="example-group">
+                    <h3>Power Automate API</h3>
+                    <div class="input-group">
+                        <label for="ppautomate-env-id">Environment ID:</label>
+                        <input type="text" id="ppautomate-env-id" placeholder="Enter environment ID" />
+                    </div>
+                    <div class="button-group">
+                        <button id="list-flows-btn" class="btn">List Flows</button>
+                    </div>
+                    <div id="powerautomate-output" class="output"></div>
+                </div>
+
+                <div class="example-group">
+                    <h3>Environment Management API</h3>
+                    <div class="button-group">
+                        <button id="list-environments-btn" class="btn btn-primary">List Environments For User</button>
+                    </div>
+                    <div id="environments-output" class="output"></div>
+                </div>
+
+                <div class="example-group">
+                    <h3>Governance API</h3>
+                    <div class="input-group">
+                        <label for="governance-env-id">Environment ID:</label>
+                        <input type="text" id="governance-env-id" placeholder="Enter environment ID" />
+                    </div>
+                    <div class="button-group">
+                        <button id="get-governance-btn" class="btn">List Rule Assignments By Environment Id</button>
+                    </div>
+                    <div id="governance-output" class="output"></div>
+                </div>
+
+                <div class="example-group">
+                    <h3>Authorization API</h3>
+                    <div class="button-group">
+                        <button id="query-role-definitions-btn" class="btn btn-primary">Query Role Definitions</button>
+                    </div>
+                    <div id="role-definitions-output" class="output"></div>
+                </div>
+
+                <div class="example-group">
+                    <h3>Authorization API - Role Assignment</h3>
+                    <div class="input-group">
+                        <label for="role-assign-tenant-id">Tenant ID:</label>
+                        <input type="text" id="role-assign-tenant-id" placeholder="e.g., 15263562-2ed2-4856-8562-42edf998128b" />
+                    </div>
+                    <div class="input-group">
+                        <label for="role-assign-principal-object-id">Principal Object ID:</label>
+                        <input type="text" id="role-assign-principal-object-id" placeholder="e.g., 78541268-7456-7856-a7ba-04424f177c7c" />
+                    </div>
+                    <div class="input-group">
+                        <label for="role-assign-principal-type">Principal Type:</label>
+                        <select id="role-assign-principal-type">
+                            <option value="ApplicationUser">ApplicationUser</option>
+                            <option value="ServicePrincipal">ServicePrincipal</option>
+                            <option value="User">User</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="role-assign-role-definition-id">Role Definition ID:</label>
+                        <input type="text" id="role-assign-role-definition-id" placeholder="e.g., ff954d61-a89a-4fbe-ace9-01c367b89f87" />
+                    </div>
+                    <div class="button-group">
+                        <button id="assign-role-btn" class="btn btn-success">Assign Role</button>
+                    </div>
+                    <div id="role-assignment-output" class="output"></div>
+                </div>
+
+                <div class="example-group">
+                    <h3>Authorization API - Query Role Assignments</h3>
+                    <div class="input-group">
+                        <label for="query-role-assign-principal-id">Principal Object ID (Optional - filters results):</label>
+                        <input type="text" id="query-role-assign-principal-id" placeholder="e.g., 78541268-7456-7856-a7ba-04424f177c7c" />
+                    </div>
+                    <div class="button-group">
+                        <button id="query-role-assignments-btn" class="btn">Query Role Assignments</button>
+                    </div>
+                    <div id="role-assignments-list-output" class="output"></div>
+                </div>
+            </section>
+
+            <!-- Inter-tool Invocation Example -->
+            <section class="card">
+                <h2>⚡ Inter-tool Invocation Example</h2>
+                <p style="margin: 4px 0 15px; font-size: 12px; opacity: 0.85">Demonstrates how to invoke other tools or read invoked values within the Power Platform ToolBox.</p>
+
+                <div class="example-group">
+                    <h3>Tool Launched by Another Tool or Agent</h3>
+                    <div class="input-group">
+                        <label for="iti-entity-name">Entity Name:</label>
+                        <input type="text" id="iti-entity-name" readonly />
+                    </div>
+                    <div class="button-group">
+                        <button id="iti-return-value-btn" class="btn">Return Default FetchXml (shown below)</button>
+                    </div>
+                    <div id="iti-default-fetch-output" class="output"></div>
+                </div>
+                <div class="example-group">
+                    <h3>Launch Fetch XML Studio</h3>
+                    <div class="input-group">
+                        <label for="iti-entity-logical-name">Entity Logical Name:</label>
+                        <input type="text" id="iti-entity-logical-name" placeholder="account" />
+                    </div>
+                    <div class="button-group">
+                        <button id="iti-launch-fetchxml-btn" class="btn">Launch Fetch XML Studio</button>
+                    </div>
+                    <h4>Returned FetchXML:</h4>
+                    <div id="iti-returned-fetch-output" class="output"></div>
+                </div>
+            </section>
+
+            <!-- Event Log -->
+            <section class="card">
+                <h2>📋 Event Log</h2>
+                <button id="clear-log-btn" class="btn btn-secondary">Clear Log</button>
+                <div id="event-log" class="log"></div>
+            </section>
+        </div>
+
+        <script src="app.js" type="module"></script>
+    </body>
+</html>

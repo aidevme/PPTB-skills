@@ -1,0 +1,38 @@
+{
+    "invocation": {
+        "version": "1.0.0",
+        "capabilities": [
+            "fetchxml"
+        ],
+        "prefill": {
+            "properties": {
+                "entityName": {
+                    "type": "string"
+                }
+            }
+        },
+        "returnTopic": {
+            "properties": {
+                "fetchXml": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "agents": {
+        "version": "1.0.0",
+        "invokable": true,
+        "modes": [
+            "two-way"
+        ],
+        "defaultMode": "two-way",
+        "timeoutMS": 60000,
+        "headless": true,
+        "executionModes": [
+            "windowed",
+            "headless"
+        ],
+        "defaultExecutionMode": "headless",
+        "headlessEntry": "dist/headless.js"
+    }
+}
