@@ -25,6 +25,7 @@ graph TD
     ToolDev --> Release1[Release]
 
     Scaffold --> s1["create-pptb-tool"]
+    Scaffold --> s0["update-pptb-tool"]
     ApiInt --> s2["add-toolbox-api"]
     ApiInt --> s3["add-dataverse-api"]
     ApiInt --> s4["add-powerplatform-api"]
@@ -50,7 +51,7 @@ graph TD
     class ToolDev,BoxDev root;
 ```
 
-A typical tool build starts with `create-pptb-tool`, layers in whichever API skills the tool's functionality needs, adds `configure-csp` if any of those reach an external domain, wraps the result with `add-error-handling`, adds `add-inter-tool-invocation`/`add-agent-integration` for cross-tool or AI-assistant behavior, then closes out with `validate-pptb-tool` and `publish-pptb-tool`. A toolbox contributor runs `setup-toolbox-dev-env` once, reaches for `add-host-manager` whenever a change needs new main-process capability, and finishes with `package-toolbox` before opening a PR.
+A new tool build starts with `create-pptb-tool`; an existing tool goes through `update-pptb-tool` first instead. From there it layers in whichever API skills the tool's functionality needs, adds `configure-csp` if any of those reach an external domain, wraps the result with `add-error-handling`, adds `add-inter-tool-invocation`/`add-agent-integration` for cross-tool or AI-assistant behavior, then closes out with `validate-pptb-tool` and `publish-pptb-tool`. A toolbox contributor runs `setup-toolbox-dev-env` once, reaches for `add-host-manager` whenever a change needs new main-process capability, and finishes with `package-toolbox` before opening a PR.
 
 Skills cross-reference each other within a group — `add-toolbox-api` ↔ `add-dataverse-api` ↔ `add-powerplatform-api` ↔ `add-error-handling` ↔ `add-inter-tool-invocation`. See each skill's own `SKILL.md` for its "Next steps"/"Related" links.
 
@@ -61,6 +62,7 @@ Skills cross-reference each other within a group — `add-toolbox-api` ↔ `add-
 | ----- | ----------- |
 | [tool-development](.github/plugins/pptb/skills/tool-development/) | Entry point for building a PPTB tool — a web app that runs inside the Power Platform ToolBox host and talks to Dataverse/Power Platform through injected APIs. Routes to the specific skill a request needs. |
 | [create-pptb-tool](.github/plugins/pptb/skills/create-pptb-tool/) | Scaffolds a new Power Platform ToolBox (PPTB) tool — runs the `yo pptb` generator (or a manual fallback), writes a compliant `package.json` manifest, installs `@pptb/types`, and wires a minimal... |
+| [update-pptb-tool](.github/plugins/pptb/skills/update-pptb-tool/) | Entry point for modifying an existing PPTB tool — confirms the project, then routes the change (new capability, version bump, dependency upgrade, manifest edit) to the skill that handles it. |
 | [add-toolbox-api](.github/plugins/pptb/skills/add-toolbox-api/) | Wires up `window.toolboxAPI` calls — connections, utils (notifications, clipboard, theme, parallel execution, browser open), terminal sessions, inter-tool invocation, and tool context. |
 | [add-dataverse-api](.github/plugins/pptb/skills/add-dataverse-api/) | Wires up `window.dataverseAPI` calls — CRUD, relationship associations, FetchXML/OData queries, entity/attribute/relationship/option-set metadata and schema writes, actions, and solution deployment. |
 | [add-powerplatform-api](.github/plugins/pptb/skills/add-powerplatform-api/) | Wires up `window.powerplatformAPI` namespace calls (environment management, governance, licensing, analytics, etc.) and the Entra app registration prerequisites they depend on. |
@@ -79,4 +81,4 @@ Skills cross-reference each other within a group — `add-toolbox-api` ↔ `add-
 | [package-toolbox](.github/plugins/pptb/skills/package-toolbox/) | Runs lint, type-check, and build steps for the ToolBox host, then produces a platform-specific packaged build from its three Vite bundles. |
 <!-- SKILLS:END -->
 
-All 18 skills in the catalog have drafted content — see [VERSIONS.md](VERSIONS.md) for per-skill version history and [docs/pptb-skills](docs/pptb-skills/) for the original design specs.
+All 19 skills in the catalog have drafted content — see [VERSIONS.md](VERSIONS.md) for per-skill version history and [docs/pptb-skills](docs/pptb-skills/) for the original design specs.

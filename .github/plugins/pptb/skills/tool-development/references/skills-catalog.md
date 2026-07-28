@@ -8,6 +8,10 @@ Full descriptions and trigger phrases for every skill `tool-development` routes 
 
 Scaffolds a new Power Platform ToolBox (PPTB) tool — runs the `yo pptb` generator (or falls back to a manual scaffold), writes a compliant `package.json` manifest, installs `@pptb/types`, and wires a minimal `index.html`/`app.ts` entry point against `toolboxAPI`. Use when starting a new PPTB tool from scratch, or asked to "create a PPTB tool", "scaffold a toolbox tool", "start a new tool project", "generate a PPTB tool".
 
+### `update-pptb-tool`
+
+Entry point for modifying an existing PPTB tool — confirms the project really is an already-scaffolded tool, then routes the change to the right skill (a new API integration, a version bump, a dependency upgrade, or a manifest-only edit). Use when asked to "update my PPTB tool", "add X to my existing tool", "bump the version before republishing", "upgrade @pptb/types", or any change to a tool that's already been scaffolded — the counterpart to `create-pptb-tool` for tools that already exist.
+
 ## API Integration
 
 ### `add-toolbox-api`

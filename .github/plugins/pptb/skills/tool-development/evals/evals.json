@@ -1,0 +1,83 @@
+{
+  "skill_name": "tool-development",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I want to build a new PPTB tool.",
+      "files": [],
+      "expected_output": "Should check the working directory for an existing PPTB tool (package.json with displayName/main/icon and @pptb/types in devDependencies) as the first decision. Since no files exist at all, should conclude this is a new tool and hand off to create-pptb-tool.",
+      "assertions": [
+        "Makes the create-pptb-tool vs update-pptb-tool decision before anything else",
+        "Detects that no existing PPTB project is present",
+        "Hands off to create-pptb-tool, not update-pptb-tool"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Add error handling to my tool.",
+      "files": [
+        {
+          "path": "package.json",
+          "content": "{\n  \"name\": \"@myorg/existing-tool\",\n  \"version\": \"1.0.0\",\n  \"displayName\": \"Existing Tool\",\n  \"main\": \"index.html\",\n  \"icon\": \"icons/test.svg\",\n  \"devDependencies\": {\n    \"@pptb/types\": \"^1.2.0\"\n  }\n}\n"
+        }
+      ],
+      "expected_output": "Should detect displayName/main/icon in package.json plus @pptb/types in devDependencies, conclude this is an existing tool, and hand off to update-pptb-tool. Should NOT jump straight to add-error-handling without going through update-pptb-tool first, even though the requested capability is unambiguous.",
+      "assertions": [
+        "Detects the existing manifest fields and @pptb/types dependency",
+        "Hands off to update-pptb-tool rather than create-pptb-tool",
+        "Does not jump directly to add-error-handling, skipping the create-vs-update decision",
+        "Does not attempt to re-scaffold the project"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Set up a new PPTB tool for me.",
+      "files": [
+        {
+          "path": "package.json",
+          "content": "{\n  \"name\": \"@myorg/existing-tool\",\n  \"version\": \"1.0.0\",\n  \"displayName\": \"Existing Tool\",\n  \"main\": \"index.html\",\n  \"icon\": \"icons/test.svg\",\n  \"devDependencies\": {\n    \"@pptb/types\": \"^1.2.0\"\n  }\n}\n"
+        }
+      ],
+      "expected_output": "Even though the prompt uses 'set up a new tool' wording, the directory already contains a fully-formed PPTB manifest. Should trust the file-based detection over the prompt's wording, conclude this is an existing tool, and hand off to update-pptb-tool instead of re-scaffolding over the existing project.",
+      "assertions": [
+        "Does not take 'new' in the prompt at face value without checking the working directory",
+        "Detects the existing manifest fields and @pptb/types dependency",
+        "Hands off to update-pptb-tool rather than create-pptb-tool",
+        "Does not overwrite or re-scaffold the existing project"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Help me finish setting up this tool.",
+      "files": [
+        {
+          "path": "package.json",
+          "content": "{\n  \"name\": \"@myorg/partial-tool\",\n  \"version\": \"0.1.0\",\n  \"displayName\": \"Partial Tool\",\n  \"main\": \"index.html\"\n}\n"
+        }
+      ],
+      "expected_output": "package.json has displayName and main, but is missing icon and has no devDependencies at all (so @pptb/types isn't present). Both conditions (manifest fields AND @pptb/types) must be true to count as an existing tool, so this should be treated as an incomplete/new project. Should hand off to create-pptb-tool to finish the scaffold, not update-pptb-tool.",
+      "assertions": [
+        "Recognizes that the existing-tool check requires both manifest fields and @pptb/types to be true",
+        "Does not treat a partially-filled package.json as sufficient evidence of an existing tool",
+        "Hands off to create-pptb-tool rather than update-pptb-tool",
+        "Does not incorrectly report the project as already scaffolded"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "I need to bump the version of my tool and publish an update.",
+      "files": [
+        {
+          "path": "package.json",
+          "content": "{\n  \"name\": \"@myorg/existing-tool\",\n  \"version\": \"1.0.0\",\n  \"displayName\": \"Existing Tool\",\n  \"main\": \"index.html\",\n  \"icon\": \"icons/test.svg\",\n  \"devDependencies\": {\n    \"@pptb/types\": \"^1.2.0\"\n  }\n}\n"
+        }
+      ],
+      "expected_output": "Should detect this as an existing tool and hand off to update-pptb-tool, which is responsible for routing a version-bump-and-republish request to npm version plus validate-pptb-tool and publish-pptb-tool. Should not treat this as a scaffolding task.",
+      "assertions": [
+        "Detects the existing manifest fields and @pptb/types dependency",
+        "Hands off to update-pptb-tool for a version bump request, not create-pptb-tool",
+        "Does not attempt to scaffold a new project for what is clearly a maintenance task"
+      ]
+    }
+  ]
+}

@@ -16,7 +16,7 @@ Before scaffolding, check whether the current directory is already a PPTB tool p
 - `package.json` exists and already has `displayName`, `main`, and `icon` fields
 - `@pptb/types` is listed in `devDependencies`
 
-**If both are true,** don't re-scaffold — tell the user this looks like an existing PPTB tool, and point them at the sibling skills (`add-toolbox-api`, `add-dataverse-api`, `add-powerplatform-api`, `configure-csp`, `validate-pptb-tool`, `publish-pptb-tool`) for further work instead.
+**If both are true,** don't re-scaffold — tell the user this looks like an existing PPTB tool, and hand off to `update-pptb-tool` instead, which routes the specific change to the sibling skill that handles it (`add-toolbox-api`, `add-dataverse-api`, `add-powerplatform-api`, `configure-csp`, `validate-pptb-tool`, `publish-pptb-tool`, a version bump, etc.).
 
 **Otherwise,** proceed with Steps 1–6.
 
