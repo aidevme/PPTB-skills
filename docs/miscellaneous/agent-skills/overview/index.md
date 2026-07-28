@@ -21,6 +21,7 @@ my-skill/
 ├── scripts/          # Optional: executable code
 ├── references/       # Optional: documentation
 ├── assets/           # Optional: templates, resources
+├── evals/            # Optional: templates, resources
 └── ...               # Any additional files or directories
 ```
 
